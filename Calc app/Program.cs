@@ -1,12 +1,12 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 
-Console.WriteLine("First Number");
+Console.WriteLine("enter the first Number");
 
 
 int firstnumber = Convert.ToInt32(Console.ReadLine());
 
-Console.WriteLine("Second Number");
+Console.WriteLine("enter the second number");
 
 int secondnumber = Convert.ToInt32(Console.ReadLine());
 
