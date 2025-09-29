@@ -2,63 +2,60 @@
 
 void CalculatorApp()
 {
-    //clare variables and initialize them to zero
-    int firstnumber = 0;
-    int secondnumber = 0;
-    int result = 0;
-    int choice = 0;
+    try
+    {
+        // Prompt the user to enter the first number
+        Console.Write("Enter the first number: ");
+        int firstNumber = Convert.ToInt32(Console.ReadLine());
 
-    // prompt user to enter the first number
-    Console.WriteLine("enter the first Number");
-    firstnumber = Convert.ToInt32(Console.ReadLine());
-    // prompt user to enter the second number
-    Console.WriteLine("enter the second number");
+        // Prompt the user to enter the second number
+        Console.Write("Enter the second number: ");
+        int secondNumber = Convert.ToInt32(Console.ReadLine());
 
-    secondnumber = Convert.ToInt32(Console.ReadLine());
-    Console.WriteLine("choose an option from the following: ");
-    Console.WriteLine("1 - Add");
-    Console.WriteLine("2 - Subtract");
-    Console.WriteLine("3 - Multiply");
-    Console.WriteLine("4 - Divide");
-    //Convert string to int
-    choice = Convert.ToInt32(Console.ReadLine());
-    // use if statement to perform selected operation
-    if (choice == 1)
-    {
-        result = firstnumber + secondnumber;
-        Console.WriteLine("The addition of both numbers is {0}", result);
-    }
-    else if (choice == 2)
-    {
-        result = firstnumber - secondnumber;
-        Console.WriteLine("The subtraction of both numbers is {0}", result);
-    }
-    else if (choice == 3)
-    {
-        result = firstnumber * secondnumber;
-        Console.WriteLine("The multiplication of both numbers is {0}", result);
-    }
-    else if (choice == 4)
-    {
-        if (secondnumber != 0)
+        // Prompt the user to enter the operation
+        Console.Write("Enter the operation (+, -, *, /): ");
+
+        // Keyboard input is by default of type 'string'
+        // and requires conversion to 'char' to work
+        // with the switch statement
+        char operation = Convert.ToChar(Console.ReadLine());
+        int result = 0;
+
+        // Perform the operation
+        switch (operation)
         {
-            result = firstnumber / secondnumber;
-            Console.WriteLine("The division of both numbers is {0}", result);
+            case '+':
+                result = firstNumber + secondNumber;
+                break;
+            case '-':
+                result = firstNumber - secondNumber;
+                break;
+            case '*':
+                result = firstNumber * secondNumber;
+                break;
+            case '/':
+                result = firstNumber / secondNumber;
+                break;
+            default:
+                Console.WriteLine("Invalid operation.");
+                return;
         }
-        else
-        {
-            Console.WriteLine("Error: Division by zero is not allowed.");
-        }
+
+        Console.WriteLine($"Result: {result}");
     }
-    else
+    catch (FormatException ex)
     {
-        Console.WriteLine("Invalid choice");
-
-        //perform calculation
-
-        Console.WriteLine();
-        Console.WriteLine("The addition of both numbers is {0}", result);
-
-        Console.ReadLine();
+        // Handle the case where the input is not valid
+        Console.WriteLine("Please enter a valid number.");
+    }
+    catch (DivideByZeroException ex)
+    {
+        // Handle the divide by zero error
+        Console.WriteLine($"You cannot divide by zero.");
+    }
+    finally
+    {
+        // This block runs no matter what
+        Console.WriteLine("Operation completed.");
     }
 }
